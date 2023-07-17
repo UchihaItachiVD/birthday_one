@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday,Anchal Shah!</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+        
+        h1 {
+            color: #ff4081;
+        }
+        
+        #birthdayButton {
+            background-color: #ff4081;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #birthdayButton:hover {
+            background-color: #ff6699;
+        }
+        
+        #nextButton {
+            background-color: #3366ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        #nextButton:hover {
+            background-color: #6699ff;
+        }
+        
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+        
+        #imageContainer {
+            flex: 0 0 50%;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        #imageContainer img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+        
+        .message-list {
+            flex: 0 0 50%;
+            text-align: left;
+            margin-top: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .message-item {
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: messageFadeIn 2s forwards;
+        }
+        
+        .message-item p {
+            margin: 0;
+            margin-top: 5px;
+            color: #333333;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typewriterAnim 2s forwards;
+        }
+        
+        @keyframes typewriterAnim {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes messageFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        #confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #ff4081;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: heartAnim 1s linear infinite;
+        }
+        
+        @keyframes heartAnim {
+            0% {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(0.8) rotate(45deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: scale(1) rotate(45deg);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday, Anchal Shah</h1>
+    
+    <button id="birthdayButton">Click Me!</button>
+    
+    <div id="container">
+        <div id="imageContainer">
+            <img src="image.jpg" alt="Birthday Image">
+        </div>
+        
+        <div class="message-list" id="messageList"></div>
+    </div>
+    
+    <canvas id="confetti"></canvas>
+    
+    <div id="hearts-container"></div>
+    
+    <audio id="birthdaySong" src="song.mp3" preload="auto"></audio>
+    
+    <a href="index1.html"><button id="nextButton">Next Page</button></a>
+    
+    <script>
+        var button = document.getElementById("birthdayButton");
+        button.addEventListener("click", function() {
+            button.innerHTML = "Thank you for being in my life!";
+            button.style.backgroundColor = "#ffbb33";
+            button.style.cursor = "not-allowed";
+            button.disabled = true;
+
+            generateMessages();
+            launchConfetti();
+            launchHearts();
+            playBirthdaySong();
+        });
+        
+        function generateMessages() {
+            var messageList = document.getElementById("messageList");
+            var messages = [
+                "Happy Birthday! Wishing you a day filled with love and laughter.",
+                "To the most amazing person in my life, happy birthday! You bring me so much joy and happiness.",
+                "On your special day, I want to remind you how much you mean to me. Happy birthday, my love!",
+                "Every moment with you is a gift. I'm grateful to celebrate another year of your life. Happy birthday!",
+                "Sending you all my love on your birthday. You deserve nothing but the best. Have a wonderful day!"
+            ];
+            
+            messages.forEach(function(message, index) {
+                setTimeout(function() {
+                    var messageItem = document.createElement("div");
+                    messageItem.classList.add("message-item");
+                    
+                    var messageContent = document.createElement("p");
+                    messageContent.textContent = message;
+                    messageItem.appendChild(messageContent);
+                    
+                    messageList.appendChild(messageItem);
+                }, index * 2000);
+            });
+        }
+        
+        function launchConfetti() {
+            var canvas = document.getElementById("confetti");
+            var ctx = canvas.getContext("2d");
+            var pieces = [];
+            var numberOfPieces = 100;
+            var lastUpdateTime = Date.now();
+            
+            function randomColor() {
+                var colors = ["#ff4081", "#ff6699", "#ffbb33", "#33cc33", "#3366ff", "#9933ff"];
+                return colors[Math.floor(Math.random() * colors.length)];
+            }
+            
+            function update() {
+                var currentTime = Date.now();
+                var deltaTime = currentTime - lastUpdateTime;
+                
+                for (var i = pieces.length - 1; i >= 0; i--) {
+                    var piece = pieces[i];
+                    
+                    if (piece.y >= canvas.height) {
+                        pieces.splice(i, 1);
+                        continue;
+                    }
+                    
+                    piece.y += piece.gravity * deltaTime;
+                    piece.rotation += piece.rotationSpeed * deltaTime;
+                }
+                
+                while (pieces.length < numberOfPieces) {
+                    pieces.push(createPiece());
+                }
+                
+                lastUpdateTime = currentTime;
+                
+                requestAnimationFrame(update);
+            }
+            
+            function createPiece() {
+                var x = Math.random() * canvas.width;
+                var y = 0;
+                var size = Math.random() * 20 + 10;
+                var gravity = Math.random() * 0.5 + 0.5;
+                var rotation = Math.random() * 360;
+                var rotationSpeed = Math.random() * 3 - 1.5;
+                var color = randomColor();
+                
+                return { x: x, y: y, size: size, gravity: gravity, rotation: rotation, rotationSpeed: rotationSpeed, color: color };
+            }
+            
+            function drawPiece(piece) {
+                ctx.save();
+                ctx.translate(piece.x + piece.size / 2, piece.y + piece.size / 2);
+                ctx.rotate((piece.rotation * Math.PI) / 180);
+                ctx.fillStyle = piece.color;
+                ctx.fillRect(-piece.size / 2, -piece.size / 2, piece.size, piece.size);
+                ctx.restore();
+            }
+            
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (var i = 0; i < pieces.length; i++) {
+                    var piece = pieces[i];
+                    drawPiece(piece);
+                }
+                
+                requestAnimationFrame(draw);
+            }
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            window.addEventListener("resize", function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+            
+            update();
+            draw();
+        }
+        
+        function launchHearts() {
+            var heartsContainer = document.getElementById("hearts-container");
+            var numberOfHearts = 20;
+            var colors = ["#ff4081", "#ff6699", "#ffbb33", "#33cc33", "#3366ff", "#9933ff"];
+            
+            for (var i = 0; i < numberOfHearts; i++) {
+                var heart = document.createElement("div");
+                heart.classList.add("heart");
+                heart.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                heart.style.top = Math.random() * 90 + "%";
+                heart.style.left = Math.random() * 90 + "%";
+                heart.style.animationDelay = Math.random() * 2 + "s";
+                
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        function playBirthdaySong() {
+            var audio = document.getElementById("birthdaySong");
+            audio.play();
+        }
+    </script>
+</body>
+</html>

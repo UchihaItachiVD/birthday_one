@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Happy Birthday,Anchal Shah!</title>
+    <title>Happy Birthday, Anchal Shah!</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
             background-color: #f7f7f7;
         }
-        
+
         h1 {
             color: #ff4081;
         }
-        
+
         #birthdayButton {
             background-color: #ff4081;
             color: white;
@@ -23,11 +23,11 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        
+
         #birthdayButton:hover {
             background-color: #ff6699;
         }
-        
+
         #nextButton {
             background-color: #3366ff;
             color: white;
@@ -38,83 +38,82 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        
+
         #nextButton:hover {
             background-color: #6699ff;
         }
-        
+
         #container {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
-            flex-wrap: wrap;
             max-width: 800px;
             margin: 0 auto;
             margin-top: 40px;
         }
-        
-        #imageContainer {
+
+        #slideshowContainer {
             flex: 0 0 50%;
             text-align: center;
             padding: 20px;
         }
-        
-        #imageContainer img {
+
+        #slideshowContainer img {
             max-width: 100%;
             height: auto;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            animation: imageFadeIn 2s forwards;
         }
-        
-        .message-list {
+
+        .message-container {
             flex: 0 0 50%;
             text-align: left;
             margin-top: 40px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
+            overflow-y: auto;
+            max-height: 400px;
+            padding-right: 10px;
         }
-        
+
         .message-item {
             margin-bottom: 20px;
-            background-color: #ffffff;
+            background-color: #e906cb;
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            opacity: 0;
+            opacity: 1;
             animation: messageFadeIn 2s forwards;
         }
-        
+
         .message-item p {
             margin: 0;
             margin-top: 5px;
             color: #333333;
-            white-space: nowrap;
+            white-space: normal;
             overflow: hidden;
-            width: 0;
-            animation: typewriterAnim 2s forwards;
         }
-        
-        @keyframes typewriterAnim {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        
+
         @keyframes messageFadeIn {
             0% {
                 opacity: 0;
-                transform: translateX(20px);
             }
             100% {
                 opacity: 1;
-                transform: translateX(0);
             }
         }
-        
+
+        @keyframes imageFadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         #confetti {
             position: fixed;
             top: 0;
@@ -124,7 +123,7 @@
             pointer-events: none;
             z-index: 9999;
         }
-        
+
         .heart {
             position: absolute;
             width: 30px;
@@ -134,7 +133,7 @@
             pointer-events: none;
             animation: heartAnim 1s linear infinite;
         }
-        
+
         @keyframes heartAnim {
             0% {
                 transform: scale(1) rotate(45deg);
@@ -152,26 +151,26 @@
     </style>
 </head>
 <body>
-    <h1>Happy Birthday, Anchal Shah</h1>
-    
+    <h1>Happy Birthday, Anchal Shah!</h1>
+
     <button id="birthdayButton">Click Me!</button>
-    
+
     <div id="container">
-        <div id="imageContainer">
-            <img src="image.jpg" alt="Birthday Image">
+        <div id="slideshowContainer">
+            <img id="slideshow" src="image.jpg" alt="Birthday Image">
         </div>
-        
-        <div class="message-list" id="messageList"></div>
+
+        <div class="message-container" id="messageContainer"></div>
     </div>
-    
+
     <canvas id="confetti"></canvas>
-    
+
     <div id="hearts-container"></div>
-    
+
     <audio id="birthdaySong" src="song.mp3" preload="auto"></audio>
-    
+
     <a href="index1.html"><button id="nextButton">Next Page</button></a>
-    
+
     <script>
         var button = document.getElementById("birthdayButton");
         button.addEventListener("click", function() {
@@ -185,68 +184,82 @@
             launchHearts();
             playBirthdaySong();
         });
-        
+
         function generateMessages() {
-            var messageList = document.getElementById("messageList");
+            var messageContainer = document.getElementById("messageContainer");
             var messages = [
-                "Happy Birthday! Wishing you a day filled with love and laughter.",
-                "To the most amazing person in my life, happy birthday! You bring me so much joy and happiness.",
-                "On your special day, I want to remind you how much you mean to me. Happy birthday, my love!",
-                "Every moment with you is a gift. I'm grateful to celebrate another year of your life. Happy birthday!",
-                "Sending you all my love on your birthday. You deserve nothing but the best. Have a wonderful day!"
+                "Happy Birthday! BABY ❤😘",
+                "I LOVE YOU SOOOOOOOOOOOOOOOOOOOO MUCH 😘",
+                "Happy Birthday MY LOVE, I am nothing without you 🥺🥺",
+                "Wishing you a day filled with LOVE and LAUGHTER. 😘",
+                "To the most amazing person in my life, happy birthday! You bring me so much joy and happiness. 😘",
+                "On your special day, I want to remind you how much you mean to me. Happy birthday, MY LOVE! 😘",
+                "Every moment with you is a gift. Happy birthday! 😘",
+                "Aakhon me basi ho par dur ho kahi... 😘💕",
+                "Dil ke kareeb ho ye mujhko hai yakin... 😘💕",
+                "O Sanam, Mohabbat ki kasam.... 💕💕",
+                "Bas thora TRAUMA kam dena aur RULANA kam.. baaki sab theek hai 😘",
+                "Sending you all my love on your birthday. You deserve nothing but the best. Have a wonderful day! 😘",
+                "Words can't express how much you really mean to me 💝",
+                "I can never imagine my FUTURE without YOU 💖😶",
+                "Stay with me FOREVER baby 😚😚",
+                "I will also hold you when things go WRONG!! 💗",
+                "When the world seems WRONG, and you can't stay STRONG, ❣❣",
+                "Still we'll CARRY ON... 😘😘",
+                "Facing the STORM, our love will TRANSFORM... 😘😘😘",
+                "I will be with you FROM DUSK TILL DAWN 🖤🖤🖤",
+                "I LOVE YOU 3000 😘"
             ];
-            
-            messages.forEach(function(message, index) {
-                setTimeout(function() {
-                    var messageItem = document.createElement("div");
-                    messageItem.classList.add("message-item");
-                    
-                    var messageContent = document.createElement("p");
-                    messageContent.textContent = message;
-                    messageItem.appendChild(messageContent);
-                    
-                    messageList.appendChild(messageItem);
-                }, index * 2000);
+
+            messages.forEach(function (message) {
+                var messageItem = document.createElement("div");
+                messageItem.classList.add("message-item");
+
+                var messageContent = document.createElement("p");
+                messageContent.textContent = message;
+                messageItem.appendChild(messageContent);
+
+                messageContainer.appendChild(messageItem);
             });
         }
-        
+
         function launchConfetti() {
             var canvas = document.getElementById("confetti");
             var ctx = canvas.getContext("2d");
             var pieces = [];
             var numberOfPieces = 100;
             var lastUpdateTime = Date.now();
-            
+
             function randomColor() {
                 var colors = ["#ff4081", "#ff6699", "#ffbb33", "#33cc33", "#3366ff", "#9933ff"];
                 return colors[Math.floor(Math.random() * colors.length)];
             }
-            
+
             function update() {
                 var currentTime = Date.now();
                 var deltaTime = currentTime - lastUpdateTime;
-                
+
                 for (var i = pieces.length - 1; i >= 0; i--) {
                     var piece = pieces[i];
-                    
+
                     if (piece.y >= canvas.height) {
                         pieces.splice(i, 1);
                         continue;
                     }
-                    
+
                     piece.y += piece.gravity * deltaTime;
                     piece.rotation += piece.rotationSpeed * deltaTime;
                 }
-                
+
                 while (pieces.length < numberOfPieces) {
                     pieces.push(createPiece());
                 }
-                
+
                 lastUpdateTime = currentTime;
-                
+
                 requestAnimationFrame(update);
             }
-            
+
             function createPiece() {
                 var x = Math.random() * canvas.width;
                 var y = 0;
@@ -255,10 +268,10 @@
                 var rotation = Math.random() * 360;
                 var rotationSpeed = Math.random() * 3 - 1.5;
                 var color = randomColor();
-                
+
                 return { x: x, y: y, size: size, gravity: gravity, rotation: rotation, rotationSpeed: rotationSpeed, color: color };
             }
-            
+
             function drawPiece(piece) {
                 ctx.save();
                 ctx.translate(piece.x + piece.size / 2, piece.y + piece.size / 2);
@@ -267,35 +280,35 @@
                 ctx.fillRect(-piece.size / 2, -piece.size / 2, piece.size, piece.size);
                 ctx.restore();
             }
-            
+
             function draw() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
+
                 for (var i = 0; i < pieces.length; i++) {
                     var piece = pieces[i];
                     drawPiece(piece);
                 }
-                
+
                 requestAnimationFrame(draw);
             }
-            
+
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            
-            window.addEventListener("resize", function() {
+
+            window.addEventListener("resize", function () {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
             });
-            
+
             update();
             draw();
         }
-        
+
         function launchHearts() {
             var heartsContainer = document.getElementById("hearts-container");
             var numberOfHearts = 20;
             var colors = ["#ff4081", "#ff6699", "#ffbb33", "#33cc33", "#3366ff", "#9933ff"];
-            
+
             for (var i = 0; i < numberOfHearts; i++) {
                 var heart = document.createElement("div");
                 heart.classList.add("heart");
@@ -303,14 +316,92 @@
                 heart.style.top = Math.random() * 90 + "%";
                 heart.style.left = Math.random() * 90 + "%";
                 heart.style.animationDelay = Math.random() * 2 + "s";
-                
+
                 heartsContainer.appendChild(heart);
             }
         }
-        
+
         function playBirthdaySong() {
             var audio = document.getElementById("birthdaySong");
             audio.play();
+        }
+
+        var slideshow = document.getElementById("slideshow");
+        var images = [
+            "image1.jpg",
+            "image2.jpg",
+            "image3.jpg",
+            "image4.jpg",
+            "image5.jpg",
+            "image6.jpg",
+            "image7.jpg",
+            "image8.jpg",
+            "image9.jpg",
+            "image10.jpg",
+            "image11.jpg",
+            "image12.jpg",
+            "image13.jpg",
+            "image14.jpg",
+            "image15.jpg"
+        ];
+        var currentImageIndex = 0;
+
+        function changeImage() {
+            currentImageIndex++;
+            if (currentImageIndex >= images.length) {
+                currentImageIndex = 0;
+            }
+
+            slideshow.src = images[currentImageIndex];
+        }
+
+        setInterval(changeImage, 3000);
+
+        var messageContainer = document.getElementById("messageContainer");
+
+        function scrollToBottom() {
+            messageContainer.scrollTop = messageContainer.scrollHeight;
+        }
+
+        function generateMessages() {
+            var messages = [
+                "Happy Birthday! BABY ❤😘",
+                "I LOVE YOU SOOOOOOOOOOOOOOOOOOOO MUCH 😘",
+                "Happy Birthday MY LOVE, I am nothing without you 🥺🥺",
+                "Wishing you a day filled with LOVE and LAUGHTER. 😘",
+                "To the most amazing person in my life, happy birthday! You bring me so much joy and happiness. 😘",
+                "On your special day, I want to remind you how much you mean to me. Happy birthday, MY LOVE! 😘",
+                "Every moment with you is a gift. Happy birthday! 😘",
+                "Aakhon me basi ho par dur ho kahi... 😘💕",
+                "Dil ke kareeb ho ye mujhko hai yakin... 😘💕",
+                "O Sanam, Mohabbat ki kasam.... 💕💕",
+                "Bas thora TRAUMA kam dena aur RULANA kam.. baaki sab theek hai 😘",
+                "Sending you all my love on your birthday. You deserve nothing but the best. Have a wonderful day! 😘",
+                "Words can't express how much you really mean to me 💝",
+                "I can never imagine my FUTURE without YOU 💖😶",
+                "Stay with me FOREVER baby 😚😚",
+                "I will also hold you when things go WRONG!! 💗",
+                "When the world seems WRONG, and you can't stay STRONG, ❣❣",
+                "Still we'll CARRY ON... 😘😘",
+                "Facing the STORM, our love will TRANSFORM... 😘😘😘",
+                "I will be with you FROM DUSK TILL DAWN 🖤🖤🖤",
+                "I LOVE YOU 3000 😘"
+            ];
+
+            messages.forEach(function (message, index) {
+                setTimeout(function () {
+                    var messageItem = document.createElement("div");
+                    messageItem.classList.add("message-item");
+
+                    var messageContent = document.createElement("p");
+                    messageContent.textContent = message;
+                    messageItem.appendChild(messageContent);
+
+                    messageContainer.appendChild(messageItem);
+
+                    scrollToBottom(); // Scroll to the bottom after adding a new message
+                }, index * 2000);
+            });
         }
     </script>
 </body>
